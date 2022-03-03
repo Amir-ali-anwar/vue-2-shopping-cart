@@ -1,0 +1,95 @@
+<!doctype html>
+<html class="no-js" lang="">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<title></title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+		<div id="demo">
+			<nav class="navbar nav bg-success text-white">
+				<a href="#" class="text-white" @click.prevent="iscart=false">Vue Ecommerce</a>
+				<div class="stock-item">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12">
+								<span>{{cart.item.length}}&nbsp;<template v-if="cart.item.length==1" >item</template><template v-else>items</template> in cart,</span>
+								<span>totalling   {{total |currency}}</span>
+								<button class="btn btn-outline-light" @click="iscart=true">view cart</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</nav>
+			<section class="details-section"  v-if="!iscart">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-6 " v-for="product in products">
+							<div class="details-set" >
+								<h3 class="alert-heading" v-cloak>{{ product.name }}</h3>
+								<p class="lead product-description" v-cloak > {{product.description}}</p>
+								<div class="row">
+									<div class="col-md-2">
+										<p class="product-price" v-cloak>{{product.price |currency}} </p>
+									</div>
+									<div class="col-md-4" :class="{few:product.inStock < 10, out: product.inStock==0}">
+										<p class="stock-item" v-cloak>{{product.inStock}} in stock</p>
+									</div>
+									<div class="col-md-6">
+										<button class="btn btn-success d-block m-auto" :disabled="product.inStock==0" @click="addproducts(product)" >Add to Cart</button>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</section>
+			<div v-else>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-8">
+							<h2 class="heading">The cart</h2>
+							<table v-if="cart.item.length >0" class="table table-hover table-bordered table-inverse table-striped">
+								<thead>
+									<th>product</th>
+									<th>quantity</th>
+									<th>price</th>
+								</thead>
+								<tbody>
+									<tr v-for="data in cart.item">
+										<td>{{data.products.name}}</td>
+										<td>
+											{{data.quantity}}
+											<button class="btn btn-success" @click="increasequantity(data)" :disabled="data.products.inStock==0">+</button>
+											<button class="btn btn-danger" @click="decrease(data)">-</button>
+
+										</td>
+										<td>{{data.quantity*data.products.price |currency }}</td>
+									</tr>
+									<tr>
+										<span>Grand Total :grandtotal |currency</span>
+									</tr>
+								</tbody>
+							</table>
+							<div v-else>
+								<p>There are no items in your cart</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
+			</div>
+		</div>
+		<script src="js/jquery.js"></script>
+		<script src="js/bootstrap.js"></script>
+		<script src="js/vue.js"></script>
+		<script src="js/app.js"></script>
+	</body>
+</html>

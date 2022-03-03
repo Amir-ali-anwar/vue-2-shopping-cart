@@ -1,0 +1,41 @@
+[v-cloak]{
+	display: none;
+}
+p.stock-item {
+    float: right;
+}
+.details-section .product-price{
+	display: inline-block;
+	float: left;
+
+}
+.details-section .details-set{
+    border: 1px solid #ddd;
+    margin-top: 25px;
+    padding: 25px;
+    border-radius: 5px;	
+}
+/*p.stock-item {
+    float: right;
+}
+button.btn.btn-success {
+    float: right;
+}*/
+
+
+.lead{
+	font-size: 16px;
+}
+.out{
+	color:red;
+}
+.few{
+	color: #E0A14F; 
+}
+
+
+
+
+
+
+
