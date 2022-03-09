@@ -57,7 +57,7 @@ var vm = new Vue({
 
 	methods:{
 		addproducts: function(product) {
-            var cartItem = this.getCart(product);
+            let cartItem = this.getCart(product);
 
             if (cartItem != null) {
                 cartItem.quantity++;
@@ -73,7 +73,7 @@ var vm = new Vue({
 
         },
 			getCart:function(products){
-				for (var i=0; i <this.cart.item.length; i++) {
+				for (let i=0; i <this.cart.item.length; i++) {
 					if (this.cart.item[i].products.id==products.id) {
 						return this.cart.item[i];
 					}
@@ -102,7 +102,7 @@ var vm = new Vue({
 
 			},
 			remove1:function(cartItem){
-				var index=this.cart.item.indexOf(cartItem);
+				let index=this.cart.item.indexOf(cartItem);
 				if (index !==-1) {
 					this.cart.item.splice(index,1);
 				}
@@ -111,7 +111,7 @@ var vm = new Vue({
 	},
 	computed:{
 		total:function(){
-			var total=0;
+			let total=0;
 			this.cart.item.forEach(function(item){
 				total+=item.quantity*item.products.price;
 
@@ -127,7 +127,7 @@ var vm = new Vue({
 	},
 	filters:{
 		currency:function(value){
-			var formatter =Intl.NumberFormat('en-us',{
+			let formatter =Intl.NumberFormat('en-us',{
 				style:'currency',
 				currency:'USD',
 				minimumFractionDigits:0
